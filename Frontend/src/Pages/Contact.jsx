@@ -19,7 +19,7 @@ const Contact = () => {
     setStatus("📩 Sending your message...");
 
     try {
-      const res = await fetch("http://localhost:8080/addUser", {
+      const res = await fetch("https://karate-website.onrender.com/addUser", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

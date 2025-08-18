@@ -1,82 +1,57 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-import { CgMenu, CgCloseR } from "react-icons/cg";
+"use client"
+
+import { useState } from "react"
+import { NavLink } from "react-router-dom"
+import styled from "styled-components"
+import { CgMenu, CgCloseR } from "react-icons/cg"
 
 const Navbar = () => {
-  const [openMenu, setOpenMenu] = useState(false);
-
+  const [openMenu, setOpenMenu] = useState(false)
 
   return (
     <Nav>
       <div className={openMenu ? "menuIcon active" : "menuIcon"}>
         <ul className="navbar-list">
           <li>
-            <NavLink
-              className="navbar-link"
-              onClick={() => setOpenMenu(false)}
-              to="/">
+            <NavLink className="navbar-link" onClick={() => setOpenMenu(false)} to="/">
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink
-              className="navbar-link"
-              onClick={() => setOpenMenu(false)}
-              to="/programme">
+            <NavLink className="navbar-link" onClick={() => setOpenMenu(false)} to="/programme">
               Programme
             </NavLink>
           </li>
           <li>
-            <NavLink
-              className="navbar-link"
-              onClick={() => setOpenMenu(false)}
-              to="/about">
+            <NavLink className="navbar-link" onClick={() => setOpenMenu(false)} to="/about">
               About
             </NavLink>
           </li>
           <li>
-            <NavLink
-              className="navbar-link"
-              onClick={() => setOpenMenu(false)}
-              to="/venue">
+            <NavLink className="navbar-link" onClick={() => setOpenMenu(false)} to="/venue">
               Venue
             </NavLink>
           </li>
           <li>
-            <NavLink
-              className="navbar-link"
-              onClick={() => setOpenMenu(false)}
-              to="/instructures">
+            <NavLink className="navbar-link" onClick={() => setOpenMenu(false)} to="/instructures">
               Our Instructures
             </NavLink>
           </li>
           <li>
-            <NavLink
-              className="navbar-link"
-              onClick={() => setOpenMenu(false)}
-              to="/contact">
+            <NavLink className="navbar-link" onClick={() => setOpenMenu(false)} to="/contact">
               Contact Us
             </NavLink>
           </li>
         </ul>
         {/* //nav icon */}
         <div className="mobile-navbar-btn">
-          <CgMenu
-            name="menu-outline"
-            className="mobile-nav-icon"
-            onClick={() => setOpenMenu(true)}
-          />
-          <CgCloseR
-            name="close-outline"
-            className="close-outline mobile-nav-icon"
-            onClick={() => setOpenMenu(false)}
-          />
+          <CgMenu name="menu-outline" className="mobile-nav-icon" onClick={() => setOpenMenu(true)} />
+          <CgCloseR name="close-outline" className="close-outline mobile-nav-icon" onClick={() => setOpenMenu(false)} />
         </div>
       </div>
     </Nav>
-  );
-};
+  )
+}
 
 const Nav = styled.nav`
     .navbar-list {
@@ -127,16 +102,18 @@ const Nav = styled.nav`
           font-size: 4.2rem;
           color: ${({ theme }) => theme.colors.black};
         }
-         
       }
 
       /* hide the original nav menu  */
       .navbar-list {
-        width: 100vw;
+        /* Fixed width and positioning to prevent horizontal overflow */
+        width: 100%;
+        max-width: 100%;
         height: 100vh;
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
+        right: 0;
         background-color: #fff;
 
         display: flex;
@@ -149,6 +126,10 @@ const Nav = styled.nav`
 
         visibility: hidden;
         opacity: 0;
+
+        /* Prevent any overflow */
+        overflow-x: hidden;
+        box-sizing: border-box;
 
         li {
           .navbar-link {
@@ -186,6 +167,6 @@ const Nav = styled.nav`
         z-index: 999;
       }
     }
-  `;
+  `
 
-export default Navbar;
+export default Navbar

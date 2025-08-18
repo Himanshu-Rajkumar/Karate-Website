@@ -80,16 +80,6 @@ const Wrapper = styled.section`
     }
   }
 
-  /* 💻 Large screens (min 1200px) */
-  @media (min-width: 1200px) {
-    .main > h1 {
-      font-size: 5rem;
-    }
-
-    .main > img {
-      height: 550px;
-    }
-  }
 `;
 
 export default Home;
