@@ -132,11 +132,6 @@ li {
   }
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
 
   .common-heading {
       font-size: 3.8rem;
