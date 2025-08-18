@@ -25,19 +25,12 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
-      // 👇 Safely parse response (text or JSON both)
-      let data;
-      try {
-        data = await res.json();
-      } catch {
-        data = await res.text();
-      }
-
       if (res.ok) {
-        setStatus(`✅ ${data.message || data || "Message sent successfully!"}`);
+        setStatus("✅ Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        setStatus(`❌ ${data.message || data || "Something went wrong"}`);
+        const errData = await res.json();
+        setStatus(`❌ Failed: ${errData.message || "Something went wrong"}`);
       }
     } catch (error) {
       console.error(error);
@@ -104,7 +97,7 @@ const Wrapper = styled.section`
     padding: 12px;
     border: 2px solid #c00;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 2rem;
     outline: none;
     resize: none;
     transition: 0.3s ease;
@@ -127,7 +120,6 @@ const Wrapper = styled.section`
     cursor: pointer;
     transition: 0.3s ease;
     width: 88%;
-    margin: 0 auto;
   }
 
   button:hover {
